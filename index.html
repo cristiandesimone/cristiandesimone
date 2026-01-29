@@ -1,1 +1,928 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cristian Desimone — CV</title>
+  <meta name="description" content="Cristian Desimone — Infermiere. Profilo completo e CV PDF scaricabile." />
+  <meta name="robots" content="index,follow" />
+
+  <style>
+    :root{
+      /* Blu chiaro (accent): puoi ritoccare SOLO qui se vuoi il match perfetto */
+      --accent: #76A7E6;
+      --accent-2:#BFD6F6;
+      --accent-tint: rgba(118,167,230,.14);
+      --accent-tint2: rgba(118,167,230,.22);
+
+      --bg: #ffffff;
+      --text: #0b1220;
+      --muted: rgba(11,18,32,.62);
+      --muted2: rgba(11,18,32,.46);
+      --line: rgba(11,18,32,.10);
+      --hair: rgba(11,18,32,.06);
+
+      --max: 1120px;
+      --r: 10px; /* minimal: niente “bombato” */
+      --ease: cubic-bezier(.2,.8,.2,1);
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#070b12;
+        --text: rgba(248,250,252,.92);
+        --muted: rgba(248,250,252,.62);
+        --muted2: rgba(248,250,252,.46);
+        --line: rgba(248,250,252,.12);
+        --hair: rgba(248,250,252,.08);
+        --accent: #87B4F1;
+        --accent-2:#CFE0FF;
+        --accent-tint: rgba(135,180,241,.16);
+        --accent-tint2: rgba(135,180,241,.24);
+        color-scheme: dark;
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(880px 520px at 12% -10%, var(--accent-tint), transparent 58%),
+        radial-gradient(880px 520px at 88% -12%, rgba(191,214,246,.12), transparent 58%),
+        var(--bg);
+      color:var(--text);
+      letter-spacing:-0.01em;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding: 20px 18px 84px}
+
+    /* Topbar sticky */
+    .topbar{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(255,255,255,.74);
+      border-bottom: 1px solid var(--hair);
+    }
+    @media (prefers-color-scheme: dark){
+      .topbar{ background: rgba(7,11,18,.72); }
+    }
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; min-width:0}
+    .mark{
+      width:10px; height:10px; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(118,167,230,.12);
+      flex:0 0 auto;
+    }
+    .brand .name{
+      font-weight:650;
+      font-size:14px;
+      letter-spacing:.02em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand .role{
+      margin-top:2px;
+      font-size:13px;
+      color:var(--muted2);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .actions{display:flex; align-items:center; gap:10px; flex:0 0 auto}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      font-size: 13px;
+      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+      white-space:nowrap;
+      user-select:none;
+      position: relative;
+      overflow:hidden;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(118,167,230,.40)}
+    .btn.primary{
+      border-color: rgba(118,167,230,.55);
+      background: linear-gradient(180deg, rgba(191,214,246,.92), rgba(118,167,230,.64));
+      color:#07101c;
+    }
+    .btn.primary:after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.34), transparent 65%);
+      transform: translateX(-65%);
+      opacity:.5;
+      animation: shimmer 6.6s var(--ease) infinite;
+      pointer-events:none;
+    }
+    @keyframes shimmer{
+      0%,60%{transform: translateX(-65%)}
+      100%{transform: translateX(65%)}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .btn, .btn.primary:after{transition:none; animation:none}
+    }
+    .icon{width:16px; height:16px; display:inline-block}
+
+    .progress{
+      height:2px; width:100%;
+      background: linear-gradient(to right, var(--accent), rgba(118,167,230,.20));
+      transform-origin:left;
+      transform: scaleX(0);
+      opacity:.8;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--hair);
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(34px, 4.8vw, 52px);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+    }
+    .lead{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.72;
+      max-width: 80ch;
+    }
+    .subline{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--hair);
+      align-items:center;
+    }
+    .subline span, .subline a{
+      font-size: 13px;
+      color: var(--muted2);
+    }
+
+    /* Underline link micro */
+    .link{
+      position:relative;
+      padding-bottom:2px;
+      display:inline-block;
+      color: var(--muted2);
+    }
+    .link:after{
+      content:"";
+      position:absolute; left:0; right:0; bottom:0;
+      height:1px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin:left;
+      transition: transform .22s var(--ease);
+      opacity:.9;
+    }
+    .link:hover{color: var(--text)}
+    .link:hover:after{transform: scaleX(1)}
+
+    /* ✅ Social buttons (minimal, coerenti) */
+    .socialRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin-left: auto; /* spinge i social a destra nella subline */
+    }
+    @media (max-width: 720px){
+      .socialRow{margin-left: 0; width:100%}
+    }
+    .sbtn{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: rgba(255,255,255,.56);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1;
+      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease), color .18s var(--ease);
+      user-select:none;
+    }
+    @media (prefers-color-scheme: dark){
+      .sbtn{background: rgba(18,26,44,.42)}
+    }
+    .sbtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(118,167,230,.36);
+      background: rgba(118,167,230,.10);
+      color: var(--text);
+    }
+    .sbtn svg{
+      width:16px; height:16px;
+      opacity:.92;
+    }
+    .sbtn:hover svg{
+      opacity:1;
+    }
+
+    /* Avatar (foto se esiste, altrimenti monogramma pulito) */
+    .avatarWrap{
+      border: 1px solid var(--hair);
+      border-radius: var(--r);
+      padding: 16px;
+    }
+    .avatarRow{display:flex; align-items:center; gap:14px}
+    .avatar{
+      width: 64px; height: 64px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));
+      display:grid;
+      place-items:center;
+      color:#07101c;
+      font-weight:700;
+      letter-spacing:.02em;
+      user-select:none;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .avatar.hasPhoto{
+      background: url("profile.jpg") center/cover no-repeat;
+      filter: grayscale(.25) contrast(1.05);
+    }
+    .avatarMeta{min-width:0}
+    .avatarMeta .k{
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color: var(--muted2);
+    }
+    .avatarMeta .v{
+      margin-top:4px;
+      font-size:14px;
+      color: var(--text);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    /* Layout main */
+    .layout{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+    }
+
+    /* Section styling: minimal editorial */
+    .section{
+      padding-top: 18px;
+      border-top: 1px solid var(--hair);
+    }
+    .sectionHead{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .sectionTitle{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: var(--muted2);
+    }
+    .sectionRule{
+      height:1px;
+      flex: 1 1 auto;
+      background: linear-gradient(to right, rgba(118,167,230,.55), transparent);
+      opacity:.9;
+      margin-left: 12px;
+      transform-origin:left;
+      transform: scaleX(0);
+    }
+    .section.in .sectionRule{
+      transform: scaleX(1);
+      transition: transform .8s var(--ease);
+    }
+
+    /* Items with blue dots */
+    .list{display:grid; gap: 10px}
+    .item{
+      display:grid;
+      grid-template-columns: 18px 132px 1fr;
+      gap: 12px;
+      align-items:start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--hair);
+    }
+    .item:last-child{border-bottom:0}
+    @media (max-width: 720px){
+      .item{grid-template-columns: 18px 1fr}
+      .when{grid-column:2}
+      .what{grid-column:2}
+    }
+
+    .dot{
+      width: 10px; height: 10px; margin-top: 4px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(118,167,230,.13);
+      position:relative;
+      opacity:0;
+      transform: scale(.9);
+    }
+    .item.in .dot{
+      opacity:1;
+      transform: scale(1);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
+      animation: dotPulse 2.9s var(--ease) infinite;
+      animation-delay: .8s;
+    }
+    @keyframes dotPulse{
+      0%,100%{box-shadow: 0 0 0 6px rgba(118,167,230,.13)}
+      50%{box-shadow: 0 0 0 10px rgba(118,167,230,.09)}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .item.in .dot{animation:none}
+    }
+
+    .when{
+      font-size: 13px;
+      color: var(--muted2);
+      letter-spacing:.02em;
+      white-space:nowrap;
+    }
+    .what{
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .muted{color: var(--muted)}
+    .tight{margin:0}
+
+    /* Aside boxes (minimal, white) */
+    .box{
+      border: 1px solid var(--hair);
+      border-radius: var(--r);
+      padding: 16px;
+      background: rgba(255,255,255,.56);
+    }
+    @media (prefers-color-scheme: dark){
+      .box{background: rgba(18,26,44,.42)}
+    }
+    .boxTitle{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: var(--muted2);
+    }
+    .boxContent{margin-top: 10px; color: var(--muted); font-size:14px; line-height:1.65}
+
+    /* PDF preview (collapsible) */
+    details{
+      margin-top: 18px;
+      border: 1px solid var(--hair);
+      border-radius: var(--r);
+      overflow:hidden;
+      background: rgba(255,255,255,.56);
+    }
+    @media (prefers-color-scheme: dark){
+      details{background: rgba(18,26,44,.42)}
+    }
+    summary{
+      cursor:pointer;
+      padding: 14px 16px;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .caret{
+      width:10px; height:10px;
+      border-right:2px solid var(--muted2);
+      border-bottom:2px solid var(--muted2);
+      transform: rotate(-45deg);
+      transition: transform .22s var(--ease);
+      flex:0 0 auto;
+    }
+    details[open] .caret{transform: rotate(45deg)}
+    .pdfFrame{
+      height: 740px;
+      border-top: 1px solid var(--hair);
+      background: rgba(255,255,255,.90);
+    }
+    @media (prefers-color-scheme: dark){
+      .pdfFrame{background: rgba(7,11,18,.42)}
+    }
+    .pdfFrame iframe{width:100%; height:100%; border:0}
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(10px); transition: opacity .65s var(--ease), transform .65s var(--ease)}
+    .reveal.in{opacity:1; transform: translateY(0)}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{opacity:1; transform:none; transition:none}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Cristian Desimone",
+    "jobTitle":"Infermiere",
+    "address":{"@type":"PostalAddress","addressLocality":"Gela","addressRegion":"CL","addressCountry":"IT"},
+    "email":"mailto:cristiandesimone1@gmail.com",
+    "sameAs":[
+      "https://www.instagram.com/cri_desimone/",
+      "https://it-it.facebook.com/CristianDesimoneC",
+      "https://it.linkedin.com/in/cristian-desimone-146948a3"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div style="min-width:0">
+          <div class="name">Cristian Desimone</div>
+          <div class="role">Infermiere • Emergenza-Urgenza • Area critica • Formazione</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="./CV Desimone_Cristian" download>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v10m0 0l4-4m-4 4l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Scarica CV (PDF)
+        </a>
+        <a class="btn" href="./cv.pdf" target="_blank" rel="noopener">Apri PDF</a>
+      </div>
+    </div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+  </div>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div>
+        <h1>Cristian Desimone</h1>
+        <p class="lead">
+          <!--Posso scrivere quello cge voglio sotto il mio nome-->
+        </p>
+
+        <div class="subline">
+          <span><strong class="muted">Località:</strong> Gela (CL), Sicilia</span>
+          <a class="link" href="mailto:cristiandesimone1@gmail.com">cristiandesimone1@gmail.com</a>
+          <a class="link" href="mailto:cristiandesimone@cert.ordine-opi.it">PEC</a>
+          <span><strong class="muted">Tel:</strong> +39 3935130077</span>
+
+          <!-- ✅ Social buttons -->
+          <div class="socialRow" aria-label="Social">
+            <a class="sbtn" href="https://www.instagram.com/cri_desimone/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9A4.5 4.5 0 0 1 16.5 21h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M17.4 6.6h.01" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+              </svg>
+              Instagram
+            </a>
+
+            <a class="sbtn" href="https://it-it.facebook.com/CristianDesimoneC" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v3H7v3h3v5h3v-5h3l1-3h-4v-3c0-.6.4-1 1-1Z" fill="currentColor"/>
+              </svg>
+              Facebook
+            </a>
+
+            <a class="sbtn" href="https://it.linkedin.com/in/cristian-desimone-146948a3" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.5 9.5H3.8V20h2.7V9.5ZM5.15 8.3a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2Z" fill="currentColor"/>
+                <path d="M10 9.5h2.6v1.4h.04c.36-.68 1.26-1.4 2.6-1.4 2.78 0 3.3 1.83 3.3 4.2V20h-2.7v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V20H10V9.5Z" fill="currentColor"/>
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="avatarWrap reveal" style="transition-delay:.06s">
+        <div class="avatarRow">
+          <div class="avatar" id="avatar">CD</div>
+          <div class="avatarMeta">
+            <div class="k">Cristian Desimone</div>
+            <div class="v"></div> <!--dove scrivere sotto "PROFILO" -->
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- MAIN LAYOUT -->
+    <section class="layout">
+      <!-- LEFT COLUMN -->
+      <div>
+        <section class="section reveal" id="esperienze">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Esperienze lavorative</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">09/2024 — oggi</div>
+              <div class="what">
+                <p class="tight"><strong>Infermiere 118</strong></p>
+                <p class="tight muted">Azienda Sanitaria Provinciale di Caltanissetta • S.E.U.S. 118</p>
+                <p class="tight muted">Sicilia, Gela (CL), 93012</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">07/2023 — oggi</div>
+              <div class="what">
+                <p class="tight"><strong>Infermiere di Terapia Intensiva</strong></p>
+                <p class="tight muted">Azienda Sanitaria Provinciale di Caltanissetta</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">03/2020 — 07/2023</div>
+              <div class="what">
+                <p class="tight"><strong>Infermiere di Pronto Soccorso</strong></p>
+                <p class="tight muted">Azienda Sanitaria Provinciale di Caltanissetta</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="certificazioni">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Certificazioni</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2025</div>
+              <div class="what">
+                <p class="tight"><strong>Formatore Manovre Salvavita</strong></p>
+                <p class="tight muted">Croce Rossa Italiana</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2024</div>
+              <div class="what">
+                <p class="tight"><strong>Formatore Salute</strong></p>
+                <p class="tight muted">Croce Rossa Italiana</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2024</div>
+              <div class="what">
+                <p class="tight"><strong>Formatore</strong></p>
+                <p class="tight muted">Croce Rossa Italiana</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2024</div>
+              <div class="what">
+                <p class="tight"><strong>Monitore di Primo Soccorso</strong></p>
+                <p class="tight muted">Croce Rossa Italiana</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">04/2024 — oggi</div>
+              <div class="what">
+                <p class="tight"><strong>Istruttore BLSD / PBLSD</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato di Gela</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="volontariato">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Volontariato & incarichi (CRI)</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">06/2024 — oggi</div>
+              <div class="what">
+                <p class="tight"><strong>Vice Presidente Regionale e Rappresentante Gioventù</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato Regionale Sicilia</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">05/2024 — oggi</div>
+              <div class="what">
+                <p class="tight"><strong>Responsabile dell’Ufficio di Formazione</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato di Gela</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">01/2024 — 05/2024</div>
+              <div class="what">
+                <p class="tight"><strong>Commissario</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato di Enna</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">02/2020 — 05/2024</div>
+              <div class="what">
+                <p class="tight"><strong>Monitore di Educazione alla Salute</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato di Gela</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2014</div>
+              <div class="what">
+                <p class="tight"><strong>Delegato Tecnico Provinciale alla Gioventù</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato Regionale Sicilia</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">04/2015 — 03/2016</div>
+              <div class="what">
+                <p class="tight"><strong>Vice Presidente</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato di Caltanissetta</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">12/2013 — oggi</div>
+              <div class="what">
+                <p class="tight"><strong>Volontario</strong></p>
+                <p class="tight muted">Croce Rossa Italiana • Comitato di Gela</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="docenze">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Docenze ECM</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">31/05/2024</div>
+              <div class="what">
+                <p class="tight"><strong>Triage in Pronto Soccorso</strong></p>
+                <p class="tight muted">Analisi e confronto sul modello di Triage Toscano</p>
+                <p class="tight muted">Pegaso Lavoro Soc. Coop</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="pubblicazioni">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Pubblicazioni</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2024</div>
+              <div class="what">
+                <p class="tight"><strong>Procedure Infermieristiche in area pediatrica</strong> <span class="muted">• 2ª edizione</span></p>
+                <p class="tight muted">Agrigento (AG)</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2021</div>
+              <div class="what">
+                <p class="tight"><strong>“Ricerca di sostanze alcoliche e droga”</strong></p>
+                <p class="tight muted">Casa Editrice Ambrosiana</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2021</div>
+              <div class="what">
+                <p class="tight"><strong>“Toracentesi”</strong></p>
+                <p class="tight muted">Casa Editrice Ambrosiana</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Firma</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+          <p class="muted" style="margin:0; font-size:14px; line-height:1.65">
+            Cristian DESIMONE — Gela, 27/01/2026
+          </p>
+        </section>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <aside>
+        <section class="section reveal" id="formazione">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Formazione accademica</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">in corso</div>
+              <div class="what"><p class="tight"><strong>Master di II livello in “Management Sanitario”</strong></p></div>
+            </div>
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2024</div>
+              <div class="what"><p class="tight"><strong>Master di I livello in “Infermieristica di Famiglia e Comunità”</strong></p></div>
+            </div>
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2024</div>
+              <div class="what">
+                <p class="tight"><strong>Laurea Magistrale in “Scienze Infermieristiche ed Ostetriche”</strong></p>
+                <p class="tight muted">Indirizzo: Management, Formazione, Ricerca</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2023</div>
+              <div class="what">
+                <p class="tight"><strong>Master di I livello in “Management per le funzioni di coordinamento”</strong></p>
+                <p class="tight muted">nell’area delle Professioni Sanitarie</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2019</div>
+              <div class="what"><p class="tight"><strong>Laurea in “Infermieristica”</strong></p></div>
+            </div>
+            <div class="item">
+              <div class="dot" aria-hidden="true"></div>
+              <div class="when">2016</div>
+              <div class="what"><p class="tight"><strong>Diploma di Maturità Classica</strong></p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="lingue">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Lingue</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+          <div class="box">
+            <h3 class="boxTitle">Competenza</h3>
+            <div class="boxContent">
+              <div><strong>Italiano</strong> — Madrelingua</div>
+              <div style="margin-top:6px"><strong>Inglese</strong> — B2</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal" id="contatti">
+          <div class="sectionHead">
+            <h2 class="sectionTitle">Contatti</h2>
+            <div class="sectionRule" aria-hidden="true"></div>
+          </div>
+
+          <div class="box">
+            <h3 class="boxTitle">Diretti</h3>
+            <div class="boxContent">
+              <div><strong>Email</strong>: <a class="link" href="mailto:cristiandesimone1@gmail.com">cristiandesimone1@gmail.com</a></div>
+              <div style="margin-top:6px"><strong>PEC</strong>: <a class="link" href="mailto:cristiandesimone@cert.ordine-opi.it">cristiandesimone@cert.ordine-opi.it</a></div>
+              <div style="margin-top:6px"><strong>Telefono</strong>: +39 3935130077</div>
+              <div style="margin-top:6px"><strong>Località</strong>: Gela (CL), Sicilia</div>
+
+              <!-- ✅ Social buttons nel box -->
+              <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px">
+                <a class="sbtn" href="https://www.instagram.com/cri_desimone/" target="_blank" rel="noopener">Instagram</a>
+                <a class="sbtn" href="https://it-it.facebook.com/CristianDesimoneC" target="_blank" rel="noopener">Facebook</a>
+                <a class="sbtn" href="https://it.linkedin.com/in/cristian-desimone-146948a3" target="_blank" rel="noopener">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <details class="reveal">
+          <summary>
+            <div>
+              <div style="font-weight:650; letter-spacing:.01em">Anteprima CV (PDF)</div>
+              <div style="color:var(--muted2); font-size:13px; margin-top:4px"></div> <!-- dove scrivere sotto anteprima cv-->
+            </div>
+            <div class="caret" aria-hidden="true"></div>
+          </summary>
+          <div class="pdfFrame">
+            <iframe src="./CV Desimone_Cristian#view=FitH" title="CV PDF"></iframe>
+          </div>
+        </details>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // Progress bar
+    const bar = document.getElementById("progress");
+    function updateProgress(){
+      const h = document.documentElement;
+      const max = (h.scrollHeight - h.clientHeight) || 1;
+      const p = h.scrollTop / max;
+      bar.style.transform = `scaleX(${Math.max(0, Math.min(1, p))})`;
+    }
+    updateProgress();
+    addEventListener("scroll", updateProgress, { passive:true });
+
+    // Avatar: se profile.jpg esiste, usala
+    (function(){
+      const el = document.getElementById("avatar");
+      const img = new Image();
+      img.onload = () => el.classList.add("hasPhoto");
+      img.onerror = () => {}; // resta monogramma "CD"
+      img.src = "profile.jpg?v=" + Date.now();
+    })();
+
+    // Reveal + dot animation activation + section rule
+    const all = document.querySelectorAll(".reveal, .item, .section");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+    }, { threshold: 0.12 });
+    all.forEach(x => io.observe(x));
+  </script>
+</body>
+</html>
 
